@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class MemoriesCounter : MonoBehaviour
 {
     public static MemoriesCounter Instance;
@@ -20,6 +22,7 @@ public class MemoriesCounter : MonoBehaviour
         {
             if(memoriesCount == 8)
             {
+                SceneManager.LoadScene("MenuScene");
 
             }
         }

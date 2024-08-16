@@ -23,7 +23,7 @@ public class Jumpscared : MonoBehaviour
             timerJumpscare -= Time.deltaTime;
             if(timerJumpscare <= 0)
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene("MenuScene");
             }
         }
     }
