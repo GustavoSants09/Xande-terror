@@ -13,16 +13,18 @@ public class Jumpscared : MonoBehaviour
         {
             jumpscareImage.SetActive(true);
             isJumpscared = true;
-
+            FindObjectOfType<AudioManager>().Play("Jumpscare");
         }
     }
     private void Update()
     {
         if (isJumpscared)
-        {
+        {            
+            
             timerJumpscare -= Time.deltaTime;
             if(timerJumpscare <= 0)
             {
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("MenuScene");
             }
         }
