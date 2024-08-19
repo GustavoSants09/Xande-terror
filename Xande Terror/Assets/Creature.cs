@@ -1,8 +1,7 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 public enum MonsterAI
 {
     Break, Patrol, Chase
@@ -11,33 +10,43 @@ public enum MonsterAI
 
 public class Creature : MonoBehaviour
 {
+    public static Creature Instance;
     public Transform[] patrolPoint;
     public UnityEvent OnPatrolling, OnChasing, OnBreak;
-
-    NavMeshAgent agent;
-    [Header("Radius")]
-    [SerializeField] float SetRadius;
-
+    public Collider detectArea;
+    public NavMeshAgent agent;
+    public bool isAngel;
+    public bool seekPlayer;
     [Header("Identifier")]
     public Transform playerPos, vision;
     RaycastHit hit;
 
     [Header("StateMachine")]
     MonsterAI monsterAI;
-
-    public bool CanPatrol;
-    int lastPoint;
     int pointsToPatrol;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         OnPatrolling.Invoke();
     }
+ 
+
     private void Update()
     {
         print(monsterAI);
-
+        if (isAngel)
+        {
+            if (seekPlayer)
+            {
+                agent.SetDestination(playerPos.position);
+                return;
+            }
+        }
         if (Physics.Linecast(vision.position, playerPos.position, out hit))
         {
             if (hit.distance >= 10)
@@ -54,7 +63,6 @@ public class Creature : MonoBehaviour
                 agent.SetDestination(playerPos.position);
             }
         }
-
         if (monsterAI.Equals(MonsterAI.Chase))
         {
             if (!hit.collider.CompareTag("Player"))
@@ -62,6 +70,16 @@ public class Creature : MonoBehaviour
                 monsterAI = MonsterAI.Patrol;
                 NextPointFixedPoint();
             }
+        }
+        if (isAngel)
+        {
+            agent.speed = 6;
+        }
+        if (MemoriesCounter.memoriesCount >= 4)
+        {
+            isAngel = true;
+            seekPlayer = true;
+            agent.speed = 6;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -74,20 +92,16 @@ public class Creature : MonoBehaviour
     }
     public void NextPointFixedPoint()
     {
+        if (isAngel)
+        {
+            return;
+        }
         agent.SetDestination(patrolPoint[pointsToPatrol].position);
         pointsToPatrol++;
         if (pointsToPatrol >= patrolPoint.Length)
         {
             pointsToPatrol = 0;
         }
-    }
-
-    IEnumerator BreakTime()
-    {
-        yield return new WaitForSeconds(2);
-        monsterAI = MonsterAI.Patrol;
-        StopAllCoroutines();
-
     }
     public void SetMonsterAI(MonsterAI state)
     {
@@ -108,4 +122,3 @@ public class Creature : MonoBehaviour
         }
     }
 }
-

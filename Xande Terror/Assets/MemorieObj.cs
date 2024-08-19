@@ -2,7 +2,7 @@ public class MemorieObj : InterectableObj
 {
     protected override void Interact()
     {
-        MemoriesCounter.Instance.memoriesCount++;
+        MemoriesCounter.memoriesCount++;
         PlayerInteract.Instance.OnInteractionEffected.Invoke();
         Destroy(gameObject);
     }
