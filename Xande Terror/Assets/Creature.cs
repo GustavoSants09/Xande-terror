@@ -20,6 +20,7 @@ public class Creature : MonoBehaviour
     [Header("Identifier")]
     public Transform playerPos, vision;
     RaycastHit hit;
+    public GameObject chaseObj;
 
     [Header("StateMachine")]
     MonsterAI monsterAI;
@@ -62,6 +63,7 @@ public class Creature : MonoBehaviour
                 }
                 agent.SetDestination(playerPos.position);
             }
+            
         }
         if (monsterAI.Equals(MonsterAI.Chase))
         {
@@ -77,6 +79,8 @@ public class Creature : MonoBehaviour
         }
         if (MemoriesCounter.memoriesCount >= 4)
         {
+            chaseObj.SetActive(true);
+
             isAngel = true;
             seekPlayer = true;
             agent.speed = 6;
