@@ -408,17 +408,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173005588}
-  m_LocalRotation: {x: 0.13022208, y: 0.060739662, z: -0.00736591, w: 0.98959523}
+  m_LocalRotation: {x: 0.09718169, y: 0.06343391, z: 0.013317201, w: 0.9931538}
   m_LocalPosition: {x: 0, y: 0, z: 360}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1119933431}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 14.989, y: 7.034, z: 0.074}
+  m_LocalEulerAnglesHint: {x: 11.031, y: 7.528, z: 2.264}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -445, y: -582}
+  m_AnchoredPosition: {x: -445, y: -561}
   m_SizeDelta: {x: 260, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &173005590
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Collaborators: '
+  m_text: 'Collaborators: Julio, sol  AND  bernardo citadin'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9304bddc8ac2ec847b26d47da8da8101, type: 2}
   m_sharedMaterial: {fileID: 7751985509191277339, guid: 9304bddc8ac2ec847b26d47da8da8101, type: 2}
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -65.9134, z: -1150.3593, w: -61.18347}
+  m_margin: {x: 0, y: -65.9134, z: -1353.6881, w: -61.18347}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -544,7 +544,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242379054}
   m_LocalRotation: {x: 0.13022208, y: 0.060739662, z: -0.00736591, w: 0.98959523}
-  m_LocalPosition: {x: 0, y: 0, z: -18}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -553,7 +553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 14.989, y: 7.034, z: 0.074}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -716, y: -109}
+  m_AnchoredPosition: {x: -701, y: -109}
   m_SizeDelta: {x: 260, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &242379056
@@ -1648,7 +1648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1119933431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2688,7 +2688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2017016399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2983,7 +2983,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 96fffe0308adf37459956a558808af5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.441
+  m_Volume: 0.357
   m_Pitch: 1
   Loop: 1
   Mute: 0

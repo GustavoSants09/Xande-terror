@@ -5,5 +5,7 @@ public class MemorieObj : InterectableObj
         MemoriesCounter.memoriesCount++;
         PlayerInteract.Instance.OnInteractionEffected.Invoke();
         Destroy(gameObject);
+        FindObjectOfType<AudioManager>().Play("Balloon");
+
     }
 }
