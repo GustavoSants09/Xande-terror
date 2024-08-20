@@ -39,51 +39,58 @@ public class Creature : MonoBehaviour
 
     private void Update()
     {
-        print(monsterAI);
-        if (isAngel)
+        if (MemoriesCounter.memoriesCount < 4)
         {
-            if (seekPlayer)
+            print(monsterAI);
+            if (isAngel)
             {
-                agent.SetDestination(playerPos.position);
-                return;
-            }
-        }
-        if (Physics.Linecast(vision.position, playerPos.position, out hit))
-        {
-            if (hit.distance >= 10)
-            {
-                return;
-            }
-            if (hit.collider.CompareTag("Player"))
-            {
-                print(hit.collider.name);
-                if (!monsterAI.Equals(MonsterAI.Chase))
+                if (seekPlayer)
                 {
-                    SetMonsterAI(MonsterAI.Chase);
+                    agent.SetDestination(playerPos.position);
+                    return;
                 }
-                agent.SetDestination(playerPos.position);
             }
-            
-        }
-        if (monsterAI.Equals(MonsterAI.Chase))
-        {
-            if (!hit.collider.CompareTag("Player"))
+            if (Physics.Raycast(vision.position, playerPos.position, out hit, 10))
             {
-                monsterAI = MonsterAI.Patrol;
-                NextPointFixedPoint();
+                if (hit.collider.CompareTag("Player"))
+                {
+                    print(hit.collider.name);
+                    if (!monsterAI.Equals(MonsterAI.Chase))
+                    {
+                        SetMonsterAI(MonsterAI.Chase);
+                    }
+                    agent.SetDestination(playerPos.position);
+                }
+
+                if (monsterAI.Equals(MonsterAI.Chase))
+                {
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                    }
+                    else 
+                    {
+                        monsterAI = MonsterAI.Patrol;
+                        NextPointFixedPoint();
+                    }
+
+
+                }
+
+            }
+            if (isAngel)
+            {
+                agent.speed = 6;
             }
         }
-        if (isAngel)
-        {
-            agent.speed = 6;
-        }
-        if (MemoriesCounter.memoriesCount >= 4)
+        else
         {
             chaseObj.SetActive(true);
 
             isAngel = true;
             seekPlayer = true;
             agent.speed = 6;
+            SetMonsterAI(MonsterAI.Chase);
+            agent.SetDestination(playerPos.position);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -101,6 +108,7 @@ public class Creature : MonoBehaviour
             return;
         }
         agent.SetDestination(patrolPoint[pointsToPatrol].position);
+        print(patrolPoint[pointsToPatrol].position);
         pointsToPatrol++;
         if (pointsToPatrol >= patrolPoint.Length)
         {
@@ -117,7 +125,6 @@ public class Creature : MonoBehaviour
                 OnBreak.Invoke();
                 break;
             case MonsterAI.Patrol:
-                NextPointFixedPoint();
                 OnPatrolling.Invoke();
                 break;
             case MonsterAI.Chase:
